@@ -51,6 +51,14 @@
 }
 
 /*
+  Плавная прокрутка при переходе по якорным ссылкам.
+  Если браузер не поддерживает свойство, ссылка сработает без анимации.
+*/
+html {
+  scroll-behavior: smooth;
+}
+
+/*
   Убираем стандартный внешний отступ браузера у body.
   Цвет текста и фона берутся из переменных.
 */
@@ -104,6 +112,15 @@ a:hover {
 a:focus-visible {
   outline: 2px solid var(--color-primary);
   outline-offset: 3px;
+}
+
+/*
+  Подсветка элемента, к которому выполнен переход по якорю,
+  например раздела id="popular" после ссылки #popular.
+*/
+:target {
+  outline: 2px dashed var(--color-primary);
+  outline-offset: 4px;
 }
 
 /*
@@ -188,6 +205,26 @@ a:focus-visible {
 
 .site-nav__list a:hover {
   text-decoration: underline;
+}
+
+/*
+  Хлебные крошки на внутренних страницах.
+  Текущая страница не является ссылкой, поэтому оформлена через span.
+  Цвет ссылки берётся из общего правила для a, поэтому работает и a:hover.
+*/
+.breadcrumbs {
+  max-width: var(--container-width);
+  margin: 0 auto var(--space-md);
+  font-size: 14px;
+  color: var(--color-muted);
+}
+
+/*
+  Разделитель перед названием текущей страницы.
+*/
+.breadcrumbs span::before {
+  content: " / ";
+  color: var(--color-muted);
 }
 
 /*
