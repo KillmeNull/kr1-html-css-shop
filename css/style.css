@@ -183,28 +183,37 @@ a:focus-visible {
 }
 
 /*
-  Убираем стандартные отступы и маркеры списка навигации.
+  Горизонтальное меню через Flexbox.
+  flex-wrap разрешает перенос пунктов на новую строку,
+  gap задаёт расстояние между пунктами.
 */
 .site-nav__list {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: var(--space-md);
   padding: 0;
   margin: var(--space-md) 0 0;
   list-style: none;
 }
 
-.site-nav__list li {
-  margin-bottom: var(--space-sm);
-}
-
 /*
-  Цвет ссылок меню задаётся общим правилом для a,
-  здесь убираем только подчёркивание.
+  Ссылки меню.
+  inline-block позволяет задать внутренние отступы
+  и увеличить кликабельную область.
 */
 .site-nav__list a {
+  display: inline-block;
+  padding: var(--space-sm) var(--space-md);
+  color: var(--color-primary);
   text-decoration: none;
+  border-radius: var(--radius-sm);
 }
 
 .site-nav__list a:hover {
-  text-decoration: underline;
+  color: var(--color-white);
+  background-color: var(--color-primary);
 }
 
 /*
@@ -251,11 +260,27 @@ a:focus-visible {
 }
 
 /*
+  Сетка карточек товаров через CSS Grid.
+  repeat(3, 1fr) создаёт три равные колонки,
+  gap задаёт расстояние между карточками.
+*/
+.products-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-lg);
+}
+
+/*
   Карточка товара.
-  В сетку карточки будут выстроены в практическом занятии №6.
+  Карточка сама является flex-контейнером:
+  содержимое идёт сверху вниз, расстояние между элементами задаёт gap.
+  Отступ между карточками задаёт gap сетки, поэтому margin-bottom обнулён.
 */
 .product-card {
-  margin-bottom: var(--space-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin-bottom: 0;
   padding: var(--space-md);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
@@ -268,6 +293,87 @@ a:focus-visible {
 
 .product-card h3 {
   margin-top: 0;
+}
+
+/*
+  Кнопка прижимается к низу карточки
+  и не растягивается на всю ширину.
+*/
+.product-card .button {
+  margin-top: auto;
+  align-self: flex-start;
+}
+
+/*
+  Страница каталога: фильтры слева, товары справа.
+  Первая колонка 260px отводится под фильтры,
+  вторая 1fr занимает оставшееся пространство.
+  grid-template-areas задаёт именованные области сетки.
+*/
+.catalog-layout {
+  max-width: var(--container-width);
+  margin: 0 auto var(--space-xl);
+  display: grid;
+  grid-template-columns: 260px 1fr;
+  grid-template-areas: "filters products";
+  gap: var(--space-lg);
+}
+
+/*
+  Боковая область фильтров.
+*/
+.catalog-filters {
+  grid-area: filters;
+  padding: var(--space-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background-color: var(--color-surface);
+}
+
+/*
+  Область со списком товаров.
+*/
+.catalog-products {
+  grid-area: products;
+}
+
+/*
+  Форма фильтров.
+  Группы полей идут друг под другом, расстояние между ними задаёт gap.
+*/
+.filters-form {
+  display: grid;
+  gap: var(--space-md);
+}
+
+/*
+  fieldset визуально отделяет группы фильтров.
+*/
+.filters-form fieldset {
+  margin: 0;
+  padding: var(--space-md);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+}
+
+.filters-form legend {
+  font-weight: 700;
+}
+
+.filters-form label {
+  display: block;
+  margin-bottom: var(--space-sm);
+}
+
+/*
+  Числовые поля цены.
+*/
+.filters-form input[type="number"] {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font: inherit;
 }
 
 /*
