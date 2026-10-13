@@ -35,6 +35,11 @@
 
   /* Размеры */
   --container-width: 1100px;
+  --header-offset: 200px;
+
+  /* Слои: чем больше значение, тем выше элемент */
+  --z-header: 10;
+  --z-to-top: 20;
 }
 
 /* ===============================
@@ -53,9 +58,12 @@
 /*
   Плавная прокрутка при переходе по якорным ссылкам.
   Если браузер не поддерживает свойство, ссылка сработает без анимации.
+  scroll-padding-top оставляет место под липкую шапку,
+  чтобы она не закрывала раздел, к которому выполнен переход.
 */
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: var(--header-offset);
 }
 
 /*
@@ -178,10 +186,16 @@ a:focus-visible {
 
 /*
   Шапка сайта.
+  position: sticky оставляет шапку вверху экрана при прокрутке.
+  z-index поднимает её над содержимым страницы.
 */
 .site-header {
+  position: sticky;
+  top: 0;
+  z-index: var(--z-header);
   padding: var(--space-lg);
   background-color: var(--color-surface);
+  border-bottom: 1px solid var(--color-border);
 }
 
 /*
@@ -313,8 +327,10 @@ a:focus-visible {
   Карточка товара — переиспользуемый БЭМ-блок.
   Карточка сама является flex-контейнером:
   содержимое идёт сверху вниз, расстояние между элементами задаёт gap.
+  position: relative делает карточку точкой отсчёта для бейджа.
 */
 .product-card {
+  position: relative;
   display: flex;
   flex-direction: column;
   gap: var(--space-sm);
@@ -356,6 +372,22 @@ a:focus-visible {
 .product-card__price {
   margin: 0;
   font-weight: 700;
+}
+
+/*
+  Бейдж в правом верхнем углу карточки: «Хит», «Скидка».
+  position: absolute выводит его из потока
+  и размещает относительно карточки.
+*/
+.product-card__badge {
+  position: absolute;
+  top: var(--space-sm);
+  right: var(--space-sm);
+  padding: var(--space-xs) var(--space-sm);
+  font-size: 14px;
+  color: var(--color-white);
+  background-color: var(--color-danger);
+  border-radius: var(--radius-sm);
 }
 
 /*
@@ -448,6 +480,82 @@ a:focus-visible {
 }
 
 /*
+  Страница товара: изображение слева, описание справа.
+*/
+.product {
+  max-width: var(--container-width);
+  margin: 0 auto var(--space-xl);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-lg);
+  align-items: start;
+}
+
+/*
+  У figure есть стандартные внешние отступы браузера, убираем их.
+*/
+.product__media {
+  margin: 0;
+}
+
+/*
+  Изображение занимает всю ширину колонки и сохраняет пропорции.
+*/
+.product__image {
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+}
+
+.product__title {
+  margin-top: 0;
+}
+
+.product__price {
+  font-size: 20px;
+  font-weight: 700;
+}
+
+/*
+  Кнопки под описанием товара.
+*/
+.product__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+}
+
+/*
+  Таблица характеристик товара.
+  border-collapse объединяет рамки соседних ячеек в одну линию.
+*/
+.product-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.product-table__caption {
+  margin-bottom: var(--space-sm);
+  color: var(--color-muted);
+  text-align: left;
+}
+
+.product-table__cell {
+  padding: var(--space-sm) var(--space-md);
+  border: 1px solid var(--color-border);
+  text-align: left;
+}
+
+/*
+  Ячейки заголовка таблицы.
+*/
+.product-table__cell--head {
+  background-color: var(--color-surface);
+}
+
+/*
   Дополнительный информационный блок.
 */
 .aside-info {
@@ -475,6 +583,18 @@ a:focus-visible {
 .site-footer {
   padding: var(--space-lg);
   background-color: var(--color-surface);
+}
+
+/*
+  Кнопка «Наверх».
+  position: fixed закрепляет её в правом нижнем углу окна,
+  при прокрутке она остаётся на месте.
+*/
+.to-top {
+  position: fixed;
+  right: var(--space-lg);
+  bottom: var(--space-lg);
+  z-index: var(--z-to-top);
 }
 
 /* ===============================
@@ -578,4 +698,12 @@ a:focus-visible {
   display: flex;
   gap: var(--space-md);
   margin-top: var(--space-lg);
+}
+
+/*
+  Модификатор формы на отдельной странице:
+  без модального окна ширину формы нужно ограничить.
+*/
+.order-form--page {
+  max-width: 560px;
 }
