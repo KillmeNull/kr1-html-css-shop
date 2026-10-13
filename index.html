@@ -4,9 +4,9 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Главная страница учебного интернет-магазина: преимущества, популярные товары и форма заявки.">
-  <title>Главная — Учебный интернет-магазин</title>
+  <title>Главная — Перекупы 1С</title>
   <meta property="og:type" content="website">
-  <meta property="og:title" content="Учебный интернет-магазин">
+  <meta property="og:title" content="Перекупы 1С">
   <meta property="og:description" content="Учебный frontend-проект интернет-магазина.">
   <meta property="og:image" content="https://killmenull.github.io/kr1-html-css-shop/images/preview.jpg">
   <link rel="stylesheet" href="css/style.css">
@@ -15,7 +15,7 @@
 <body>
   <header class="site-header">
     <div class="site-header__inner">
-      <a class="site-header__logo" href="index.html">ShopProject</a>
+      <a class="site-header__logo" href="index.html">Перекупы 1С</a>
 
       <nav class="site-nav" aria-label="Основная навигация">
         <ul class="site-nav__list">
@@ -37,16 +37,19 @@
         В дальнейшем на её основе будет разработан многостраничный сайт
         интернет-магазина или каталога услуг.
       </p>
-      <a class="button button--primary" href="#popular">Перейти к товарам</a>
+      <div class="hero__actions">
+        <a class="button button--primary" href="#popular">Перейти к товарам</a>
+        <a class="button button--secondary" href="order.html">Оформить заявку</a>
+      </div>
     </section>
     <section class="section" id="advantages">
-      <h2 class="section__title">Преимущества проекта</h2>
+      <h2 class="section__title">Наши преимущества</h2>
 
       <ul class="advantages-list">
-        <li>понятная HTML-структура;</li>
-        <li>семантические блоки страницы;</li>
-        <li>подключение внешнего CSS-файла;</li>
-        <li>подготовка к разработке многостраничного сайта.</li>
+        <li>к коробочке с бухгалтерией прилагается ощущение взрослой жизни;</li>
+        <li>после курса вы начнёте понимать бухгалтера, и это уже не исправить;</li>
+        <li>доставляем за 1–3 дня: дольше держать товар у себя жалко;</li>
+        <li>жёлтый цвет поднимает настроение, даже когда баланс не сходится.</li>
       </ul>
     </section>
     <section class="section" id="popular">
@@ -54,28 +57,32 @@
 
       <div class="products-grid">
         <article class="product-card product-card--featured">
-          <h3 class="product-card__title">Товар 1</h3>
-          <p class="product-card__description">Краткое описание учебного товара.</p>
+          <span class="product-card__badge">Хит</span>
+          <img class="product-card__image" src="images/product-1.jpg" alt="Жёлтый настольный калькулятор 1С с красными клавишами" width="440" height="454">
+          <h3 class="product-card__title"><a class="product-card__link" href="product.html">Калькулятор 1С</a></h3>
+          <p class="product-card__description">Настольный 12-разрядный калькулятор в фирменных цветах для бухгалтера и кассира.</p>
           <p class="product-card__price">Цена: 1000 руб.</p>
-          <button class="button button--primary product-card__button" type="button" data-product="Товар 1">
+          <button class="button button--primary product-card__button" type="button" data-product="Калькулятор 1С">
             Заказать
           </button>
         </article>
 
         <article class="product-card">
-          <h3 class="product-card__title">Товар 2</h3>
-          <p class="product-card__description">Краткое описание учебного товара.</p>
-          <p class="product-card__price">Цена: 1500 руб.</p>
-          <button class="button button--primary product-card__button" type="button" data-product="Товар 2">
-            Заказать
-          </button>
-        </article>
-
-        <article class="product-card">
-          <h3 class="product-card__title">Товар 3</h3>
-          <p class="product-card__description">Краткое описание учебного товара.</p>
+          <img class="product-card__image" src="images/product-2.jpg" alt="Жёлтая коробка программы «1С:Бухгалтерия сельскохозяйственного предприятия» с изображением трактора" width="395" height="506">
+          <h3 class="product-card__title"><a class="product-card__link" href="product-2.html">Коробочка 1С:Бухгалтерия</a></h3>
+          <p class="product-card__description">Коробочная версия программы для ведения учёта на сельскохозяйственном предприятии.</p>
           <p class="product-card__price">Цена: 2000 руб.</p>
-          <button class="button button--primary product-card__button" type="button" data-product="Товар 3">
+          <button class="button button--primary product-card__button" type="button" data-product="Коробочка 1С:Бухгалтерия">
+            Заказать
+          </button>
+        </article>
+
+        <article class="product-card">
+          <img class="product-card__image" src="images/product-3.jpg" alt="Преподаватель в жёлтой футболке 1С выступает с микрофоном на фоне плаката «1С:ERP»" width="800" height="775">
+          <h3 class="product-card__title"><a class="product-card__link" href="product-3.html">Курс 1С разработчик</a></h3>
+          <p class="product-card__description">Практический курс по разработке на платформе «1С:Предприятие» с опытным наставником.</p>
+          <p class="product-card__price">Цена: 5000 руб.</p>
+          <button class="button button--primary product-card__button" type="button" data-product="Курс 1С разработчик">
             Заказать
           </button>
         </article>
@@ -84,6 +91,38 @@
     <p class="success-message" id="success-message" hidden>
       Форма успешно отправлена!
     </p>
+    <section class="section">
+      <h2 class="section__title">Отзывы покупателей</h2>
+
+      <div class="reviews">
+        <figure class="review">
+          <p class="review__rating" role="img" aria-label="Оценка: 5 из 5">★★★★★</p>
+          <blockquote class="review__text">
+            Калькулятор удобный: клавиши крупные, цифры на дисплее хорошо видно.
+            Взяла второй такой же для коллеги.
+          </blockquote>
+          <figcaption class="review__author">Мария, бухгалтер</figcaption>
+        </figure>
+
+        <figure class="review">
+          <p class="review__rating" role="img" aria-label="Оценка: 4 из 5">★★★★☆</p>
+          <blockquote class="review__text">
+            Коробку с программой привезли за два дня. Установили сами,
+            учёт по хозяйству теперь ведём в одной системе.
+          </blockquote>
+          <figcaption class="review__author">Олег, руководитель фермерского хозяйства</figcaption>
+        </figure>
+
+        <figure class="review">
+          <p class="review__rating" role="img" aria-label="Оценка: 5 из 5">★★★★★</p>
+          <blockquote class="review__text">
+            После курса смог сам доработать отчёт на работе.
+            Наставник объясняет понятно и разбирает задачи на примерах.
+          </blockquote>
+          <figcaption class="review__author">Дмитрий, начинающий разработчик</figcaption>
+        </figure>
+      </div>
+    </section>
     <aside class="aside-info">
       <h2>Информация для студентов</h2>
       <p>
@@ -94,9 +133,13 @@
     </aside>
   </main>
   <footer class="site-footer" id="contacts">
-    <p>&copy; 2026 Учебный проект. Все права защищены.</p>
-    <p>Дисциплина: Фронтенд и бэкенд разработка</p>
+    <div class="site-footer__inner">
+      <p>&copy; 2026 Учебный проект. Все права защищены.</p>
+      <p>Дисциплина: Фронтенд и бэкенд разработка</p>
+    </div>
   </footer>
+
+  <a class="button button--primary to-top" href="#">Наверх</a>
   <dialog class="order-dialog" id="order-dialog" aria-labelledby="order-dialog-title">
     <h2 class="order-dialog__title" id="order-dialog-title">Оформление заявки</h2>
 
